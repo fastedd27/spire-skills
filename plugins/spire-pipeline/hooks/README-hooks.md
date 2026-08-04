@@ -66,3 +66,8 @@ The hook and the companion scripts require `python3` on PATH. Honest caveat:
 **without python3 the hook cannot run, and enforcement degrades to the v0.1
 prose-only posture** — the skills' written rules still apply, but nothing
 mechanically checks writes against the ring.
+
+
+## Runtime resolution (v0.2.1)
+
+The hook command tries `python3`, then `python`, then `py -3` — each probed by actually executing a no-op, which defeats the Windows Store's fake `python3` alias stub (it sits on PATH but exits with an error). With no working Python at all, the guard announces itself INACTIVE on stderr and allows — the prose write rules are then the only boundary. Discovered live on a stock Windows 11 box, 2026-08-05.
