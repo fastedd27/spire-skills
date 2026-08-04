@@ -1,0 +1,14 @@
+{
+  "name": "spire-skills",
+  "owner": {
+    "name": "Charles Weeks — The Wizard's Spire",
+    "url": "https://thewizardsspire.com"
+  },
+  "plugins": [
+    {
+      "name": "spire-pipeline",
+      "source": "./plugins/spire-pipeline",
+      "description": "Three-stage build pipeline: design-swarm (divergence-first design), run-list (durable multi-session build planning), conductor (tiered execution with probe-verified ticks). One engine, config-swappable."
+    }
+  ]
+}
