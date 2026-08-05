@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "run": {
+    "date": "2026-08-05T19:31:16Z",
+    "project": "demo-fixture",
+    "task": "Acceptance-test fixture for the per-run report emission (OT-HQ-168)",
+    "mode": "work",
+    "engine_version": "0.3.0",
+    "house_config_version": "1.0",
+    "house_config_date": "2026-08-05",
+    "run_list": "plugins/spire-pipeline/references/fixtures/demo-fixture-run-list.md",
+    "run_status": "parked"
+  },
+  "volume": {
+    "rows_total": 3,
+    "rows_ticked": 2,
+    "rows_parked": 1,
+    "park_reasons": {
+      "canonical-surface": 0,
+      "physical-action": 0,
+      "unknown-blocker": 0,
+      "dependency": 0,
+      "operator-decision": 1,
+      "other": 0
+    },
+    "park_notes": []
+  },
+  "cost": {
+    "dispatches_by_tier": { "mechanical": 0, "standard": 2, "judgment": 1 },
+    "tokens_by_tier": { "mechanical": 0, "standard": 2200, "judgment": 900, "basis": "estimate" },
+    "wall_clock_minutes": 6
+  },
+  "vitals": {
+    "retries": 0,
+    "tier_escalations": 0,
+    "rows_per_hour": 30,
+    "catch_ratio": { "enumerated_trigger_parks": 0, "judgment_parks": 1 },
+    "needle_leak_rate": null
+  },
+  "oversight": {
+    "operator_touches": 1,
+    "caught_problems": { "parks_saving_work": 1, "probe_failures_fired": 0 }
+  }
+}
