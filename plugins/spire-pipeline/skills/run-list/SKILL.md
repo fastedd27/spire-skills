@@ -1,7 +1,7 @@
 ---
 name: run-list
 description: >-
-  (v2026-08-04.2) Plan and drive a multi-session build with a single durable run-list (a "build
+  (v2026-08-05.1) Plan and drive a multi-session build with a single durable run-list (a "build
   scope checklist" / "build sequence" / "session plan"). Use this WHENEVER a
   build is big enough to span several dependent work sessions and/or more than
   one repo or surface — the moment you'd otherwise start firing off sessions
@@ -260,7 +260,7 @@ the build wants machine-checkable proof instead of a narrated report:
 routinely stall on operator input, add a `## Return Board` section that
 aggregates those asks as short cards — each ≤3 plain-English lines: the ask,
 a minutes estimate, and what answering it unblocks — topped by a short resume
-brief. Skip this section entirely on a build with no stalls to aggregate.
+brief. Skip this section entirely on a build with no stalls to aggregate. Any card that asks the operator to CHOOSE between options carries the gate-brief shape (No Naked Gate — `shared/pipeline-conventions.md`): each option named by what it is plus its tradeoff, a recommendation, and reversibility, surfaced in the conversation rather than pointing at a file.
 
 **Optional lifecycle frontmatter.** A run-list that will be consumed by a later
 stage can carry session-input-lifecycle frontmatter at its top: `type:

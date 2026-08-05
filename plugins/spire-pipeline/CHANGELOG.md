@@ -2,6 +2,14 @@
 
 Release history for the plugin. Deeper engine detail (rule-level provenance, fold history) lives in each skill's own version log inside its `SKILL.md`.
 
+## 0.4.0 (2026-08-05)
+
+- **No Naked Gate — the gate brief.** New canonical rule in `shared/pipeline-conventions.md`: every operator-facing gate must render enough readable context IN THE LIVE CONVERSATION (chat or code-window turn, mobile included) for the operator to answer without guessing — decision, each option by what it is + its tradeoff (never a bare codename), recommendation + why, reversibility. Closes the maiden-run failure where gates surfaced bare option labels and forced a blind accept of the recommendation.
+- `design-swarm` Gate A and Gate B now require the discovery summary / scoreboard to land as a gate brief in the conversation before the ask fires.
+- `conductor` D3: the decide-once brief file stays the hash-ratified system of record, but its Table A/B content is now rendered into the conversation for answering (answerable on mobile with the file closed); `operator-decision` return-board cards carry the gate-brief shape.
+- `run-list` return-board cards that ask the operator to choose carry the gate-brief shape.
+- Skill version tags bumped: design-swarm `v2026-08-05.1`, run-list `v2026-08-05.1`, conductor `v2026-08-05.1`.
+
 ## 0.3.0 (2026-08-05)
 
 - **Per-run report.** The conductor now emits `<run-list-basename>.report.json`, sibling to the run-list, at every summary (interim and final; the final overwrites the interim). Machine-readable and version-stamped: its own `schema_version` (1.0, independent of the plugin version) plus the engine version and config version.

@@ -24,6 +24,22 @@ Shared vocabulary carried by the three-skill pipeline (`design-swarm` → `run-l
 
 Item numbers and M-section refs cite the executor's ratified design spec of record (`cfg:refs.executor_spec`) — provenance markers, not links a reader must resolve.
 
+## No Naked Gate — the gate brief (operator-facing context is load-bearing)
+
+Every operator-facing gate — any point where the run stops for a human to choose, approve, redirect, or ratify — must be preceded by, or carry, a **gate brief**: enough readable context, IN THE LIVE CONVERSATION, for the operator to answer without guessing. The failure this closes (maiden-run, 2026-08-05): a gate that surfaces bare option labels ("pick A, B, or C" / "Twoyear + grafts") with the reasoning left in the agent's head or buried in a file. Bare-label gates force a blind rubber-stamp of the recommendation, which defeats the entire point of a ratify seam.
+
+**The brief lands in the conversation, not (only) a file.** Chat window or code-window turn — the surface the operator is actually looking at, including on mobile. A pointer to a durable `.md` the operator would have to open is NOT a substitute; where a durable file is the system of record (e.g. the conductor's decide-once brief), its answerable content is ALSO rendered into the conversation. One writer, many surfaces: the file may be canonical, but the readable gate is never skipped.
+
+**Required shape** (adapt length to stakes; a trivial gate is one tight paragraph, a run-steering gate is the full set):
+- **Decision** — what is being decided in one line, and what changes downstream based on the answer (why this gate exists at all).
+- **Options** — each choice named with *what it actually is* plus its main tradeoff in a line. No option is ever a bare codename: "Twoyear + grafts" alone fails; "Twoyear + grafts — 2yr retention window plus grafted-in X; richer, adds Y coupling" passes.
+- **Recommendation + why** — the default and the reasoning behind it, so the operator can evaluate rather than defer.
+- **Reversibility** — reversible vs one-way / expensive-to-undo, called out for anything consequential.
+
+**Cowork polish (optional, never load-bearing).** Where the ask surface supports per-option previews or descriptions (e.g. Cowork's question widget), carry the per-option "what it is + tradeoff" there too. This ENRICHES the widget; it does not replace the in-conversation brief, which must stand alone so the gate reads identically in a plain code-window prompt.
+
+Carried by all three pipeline skills at their gates: design-swarm Gate A and Gate B; the conductor's decide-once brief surfacing and any `operator-decision` return-board card; the run-list return board. Amend HERE, never as a local fork in a skill.
+
 ## Park-reason vocabulary
 
 Enum-closed set of categories used to classify a parked row, both on the return board and in the `volume.park_reasons` counts of the per-run report (`shared/run-report-schema.md`). Grows only via `other` plus a note, never by inventing a new bare category ahead of a schema bump.

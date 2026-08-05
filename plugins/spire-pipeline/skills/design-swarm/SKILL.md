@@ -1,6 +1,6 @@
 ---
 name: design-swarm
-description: "(v2026-08-04.3) Run a design swarm: a divergence-first DESIGN pass that fans independent lens agents over a hard problem, competes approaches under different axioms, kills the weak ones at a critique gate, and stops at a written design the operator ratified. Never builds. Trigger on: 'design swarm', 'swarm this design', 'run a design pass on', 'brainstorm swarm', 'swarm the design process', or any ask to design/architect something non-trivial where the operator wants competing options rather than one answer. Do NOT trigger for build/implementation work (that is run-list territory) or quick single-answer questions."
+description: "(v2026-08-05.1) Run a design swarm: a divergence-first DESIGN pass that fans independent lens agents over a hard problem, competes approaches under different axioms, kills the weak ones at a critique gate, and stops at a written design the operator ratified. Never builds. Trigger on: 'design swarm', 'swarm this design', 'run a design pass on', 'brainstorm swarm', 'swarm the design process', or any ask to design/architect something non-trivial where the operator wants competing options rather than one answer. Do NOT trigger for build/implementation work (that is run-list territory) or quick single-answer questions."
 ---
 
 <!-- ENGINE FILE — one source, two cuts. Installation-specific values (path
@@ -66,7 +66,7 @@ Conductor synthesizes the six digests into a half-page discovery summary. No new
 
 ### Gate A — operator redirect (HARD STOP)
 
-Present the discovery summary + any `question_for_operator` items. Operator may: redirect (rerun specific lenses with a sharpened frame), add/kill lenses, amend hard locks, or approve. Do not proceed without an explicit approve.
+Present the discovery summary + any `question_for_operator` items **as a gate brief in the live conversation** (No Naked Gate — `shared/pipeline-conventions.md`): the summary and each open question rendered readably in the chat/code-window turn BEFORE the approve/redirect ask fires, never collapsed into bare widget option labels. Operator may: redirect (rerun specific lenses with a sharpened frame), add/kill lenses, amend hard locks, or approve. Do not proceed without an explicit approve.
 
 ### S2 — Approaches (compete under different axioms)
 
@@ -85,7 +85,7 @@ Conductor assembles the scoreboard: approaches ranked, kills marked with reasons
 
 ### Gate B — operator picks (HARD STOP, the ratify seam)
 
-Present the scoreboard. Operator picks the winner, or names a hybrid (winner + salvaged parts). Record the chosen option AND a one-line why — this feeds the spec's "why it won" field. Do not proceed without the pick.
+Present the scoreboard **as a gate brief in the live conversation** (No Naked Gate — `shared/pipeline-conventions.md`): before the pick is asked, render in the conversation what is being decided, each competing approach by *what it actually is + what it sacrifices + its kill/keep/salvage verdict* (never a bare codename), the ranked recommendation and why it leads, and what the choice makes expensive to reverse. Then ask the pick. Operator picks the winner, or names a hybrid (winner + salvaged parts). Record the chosen option AND a one-line why — this feeds the spec's "why it won" field. Do not proceed without the pick.
 
 ### S4/S5 — Spec + HALT
 
