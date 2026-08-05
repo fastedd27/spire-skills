@@ -13,7 +13,9 @@ Skills and plugins from **The Wizard's Spire** — working agent-orchestration m
 
 **Claude desktop / Cowork (GUI):** Settings → Plugins → add the marketplace `fastedd27/spire-skills`, then install **spire-pipeline**. Enable marketplace auto-sync to pick up new versions.
 
-Installs are per-surface — if you work in both, install in both. Skills and hooks load at session start, so open a fresh session after installing or updating.
+**Updating (desktop):** auto-sync pulls new commits from the marketplace on its own, but the installed plugin only moves forward when you click **Update** on its plugin page (Settings → Plugins → Spire pipeline — an "Update available" badge appears when the synced marketplace is ahead).
+
+Installs are per-surface — if you work in both, install in both. Skills and hooks load at session start, so open a fresh session after installing or updating; running sessions keep the old version.
 
 ## Plugins
 
