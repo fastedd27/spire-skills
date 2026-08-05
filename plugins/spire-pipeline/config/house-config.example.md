@@ -19,6 +19,12 @@ omitted from your config. Only a key with NO documented default, or an
 unrecognized/malformed entry, is treated like an UNKNOWN row: deny-by-default
 (park and ask), never guessed.
 
+## Config metadata
+
+| key | what it is | example value |
+|---|---|---|
+| `cfg:config.version` | A semver version for this config file (starting `1.0`). Any edit to the config must bump this version. Per-run reports stamp this version AND the config's modification date together, so a stale hand-bumped version is visible against its date. Omit → "unversioned" plus the config file's modification date. | `1.0` or higher, e.g. `1.2` |
+
 ## Path roots (staging ring)
 
 | key | what it is | example value |

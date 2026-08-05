@@ -14,6 +14,10 @@ Works on anything with 3+ steps — code, documents, content, systems. All state
 
 **Architecture note ("one engine, two cuts"):** each skill's text never hardcodes an environment — a swappable config layer binds it to yours (annex pattern, same shape as Ari Evergreen Build's swappable domain layer — see Credits & Lineage below, MIT). The authors run the same engine text with their own config; you run it with yours.
 
+## Per-run report
+
+The conductor emits a `<run-list-basename>.report.json` file sibling to the run-list after every summary checkpoint (both interim summaries and the final summary; interim reports are overwritten by the final). This file is machine-readable and carries its own `schema_version` (independent of the plugin's semantic version) together with the engine version and the config version stamped at run time. The full schema and version history are documented in `plugins/spire-pipeline/shared/run-report-schema.md`. Report files are canonical: any aggregation, indexing, or derived reporting layer is built atop them, never as an alternative source.
+
 ## Setup
 
 1. Install from the marketplace: `/plugin marketplace add fastedd27/spire-skills` then `/plugin install spire-pipeline@spire-skills`. Or manually: place this folder where your Claude Code/Cowork plugins live. After installing, reload/restart the session so the new skills register.
