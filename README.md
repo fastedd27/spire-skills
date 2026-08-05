@@ -4,16 +4,22 @@ Skills and plugins from **The Wizard's Spire** — working agent-orchestration m
 
 ## Install
 
+**Claude Code (CLI):**
+
 ```
 /plugin marketplace add fastedd27/spire-skills
 /plugin install spire-pipeline@spire-skills
 ```
 
+**Claude desktop / Cowork (GUI):** Settings → Plugins → add the marketplace `fastedd27/spire-skills`, then install **spire-pipeline**. Enable marketplace auto-sync to pick up new versions.
+
+Installs are per-surface — if you work in both, install in both. Skills and hooks load at session start, so open a fresh session after installing or updating.
+
 ## Plugins
 
 | Plugin | What it is |
 |--------|------------|
-| [spire-pipeline](plugins/spire-pipeline/) | Three-stage build pipeline: **design-swarm** (divergence-first design pass — competing approaches, critique gate), **run-list** (one durable document that plans and tracks a multi-session build), **conductor** (tiered execution engine — every completed step verified by a mechanical probe before it counts; no self-certified done). |
+| [spire-pipeline](plugins/spire-pipeline/) — v0.3.0 ([changelog](plugins/spire-pipeline/CHANGELOG.md)) | Three-stage build pipeline: **design-swarm** (divergence-first design pass — competing approaches, critique gate), **run-list** (one durable document that plans and tracks a multi-session build), **conductor** (tiered execution engine — every completed step verified by a mechanical probe before it counts; no self-certified done). Every run emits a machine-readable, version-stamped report (`<run-list-basename>.report.json`) at each run summary — schema in [run-report-schema.md](plugins/spire-pipeline/shared/run-report-schema.md). |
 
 More on the way — a model-security vetting pair (scorecard + deep eval) is next.
 
