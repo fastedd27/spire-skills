@@ -81,7 +81,7 @@ The report's own `schema_version` versions independently of the engine's semver 
 | `house_config_version` | The resolved config's own version field. |
 | `house_config_date` | The resolved config's own date, stamped together with `house_config_version` so a stale hand-bumped version is visible against its date. |
 | `run_list` | Path to the run-list document this report was emitted for. |
-| `run_status` | `completed` (all rows resolved and this is the final report), `parked` (run ended with unresolved parks), or `interim` (mid-run summary, will be overwritten by the eventual final report). |
+| `run_status` | `completed` = a FINAL report where `rows_parked` is 0. `parked` = a FINAL report where `rows_parked` > 0 — a fully-visited run that ends with any parked rows is `parked`, never `completed`. `interim` = any non-final summary (mid-run park/pause); overwritten by the final. |
 
 ### `volume`
 

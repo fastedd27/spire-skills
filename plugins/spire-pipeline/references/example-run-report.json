@@ -9,7 +9,7 @@
     "house_config_version": "1.0",
     "house_config_date": "2026-08-05",
     "run_list": "pipeline-runs/demo-widget-cleanup-run-list.md",
-    "run_status": "completed"
+    "run_status": "parked"
   },
   "volume": {
     "rows_total": 6,
