@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "run": {
+    "date": "2026-08-05T21:14:00Z",
+    "project": "demo-widget-cleanup",
+    "task": "Rename the legacy widget module and update its call sites",
+    "mode": "code",
+    "engine_version": "0.3.0",
+    "house_config_version": "1.0",
+    "house_config_date": "2026-08-05",
+    "run_list": "pipeline-runs/demo-widget-cleanup-run-list.md",
+    "run_status": "completed"
+  },
+  "volume": {
+    "rows_total": 6,
+    "rows_ticked": 5,
+    "rows_parked": 1,
+    "park_reasons": {
+      "canonical-surface": 0,
+      "physical-action": 0,
+      "unknown-blocker": 0,
+      "dependency": 0,
+      "operator-decision": 1,
+      "other": 0
+    },
+    "park_notes": []
+  },
+  "cost": {
+    "dispatches_by_tier": { "mechanical": 3, "standard": 2, "judgment": 1 },
+    "tokens_by_tier": { "mechanical": 15000, "standard": 22000, "judgment": 18000, "basis": "estimate" },
+    "wall_clock_minutes": 47
+  },
+  "vitals": {
+    "retries": 1,
+    "tier_escalations": 1,
+    "rows_per_hour": 7.7,
+    "catch_ratio": { "enumerated_trigger_parks": 0, "judgment_parks": 1 },
+    "needle_leak_rate": null
+  },
+  "oversight": {
+    "operator_touches": 2,
+    "caught_problems": { "parks_saving_work": 1, "probe_failures_fired": 0 }
+  }
+}
