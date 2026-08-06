@@ -31,6 +31,35 @@ To get a useful setup without reading the whole table, copy this file to `house-
 
 Everything else below is safe to leave at its documented default until you have a reason to set it. The full table follows.
 
+The three one-liners below do that copy for you, targeting your **home directory** (project root works too — swap the destination). Each is no-clobber: it refuses to touch an existing `house-config.md`, and what it produces is a **starting file** — copy this example, then edit it down to the three keys above (and whatever else you need from the table) per this Quickstart. It is never a finished config on its own.
+
+macOS / Linux:
+
+```bash
+cp -n config/house-config.example.md ~/house-config.md
+```
+
+WSL:
+
+```bash
+cp -n config/house-config.example.md ~/house-config.md
+```
+
+Windows PowerShell:
+
+```powershell
+if (-not (Test-Path "$HOME\house-config.md")) { Copy-Item "config\house-config.example.md" "$HOME\house-config.md" }
+```
+
+Windows installs must also set `cfg:hooks.hash` to `certutil -hashfile <path> SHA256` — the `sha256sum` omit-default is not present on a stock Windows box.
+
+**Already have a config?** Run `spire-pipeline:setup` in diff mode: it reports which keys are new or changed against your existing `house-config.md` and never writes anything itself.
+
+**For an AI assistant running this Quickstart on someone's behalf:**
+- Confirm the user's actual HOST operating system before picking a block — a cloud/container session often reports Linux even when the user's host is Windows, so don't infer OS from the execution environment.
+- Never overwrite an existing `house-config.md`; the no-clobber guards above are load-bearing, not a suggestion to skip if a file is already there.
+- Keys and their defaults come only from the table below — never invent, infer, or borrow a value from anywhere else.
+
 ## Config metadata
 
 | key | what it is | example value |
