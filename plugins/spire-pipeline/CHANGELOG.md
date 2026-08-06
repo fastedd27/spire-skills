@@ -2,6 +2,14 @@
 
 Release history for the plugin. Deeper engine detail (rule-level provenance, fold history) lives in each skill's own version log inside its `SKILL.md`.
 
+## 0.5.0 (2026-08-06)
+
+- **New `spire-pipeline:setup` skill** — an opt-in, explicitly-invoked onboarding helper for the config layer. Replays the README's discovery order; a found config enters read-only diff mode (shadowing check, missing-key report against documented omit-defaults, Quickstart coverage) and writes nothing. No config found runs evidence-first detection (host OS with the bridge/cloud caution, hash tool, dispatch tooling), asks two outcome-phrased questions (durable location; project-vs-machine config placement), then writes a minimal config containing only the example's Quickstart-chosen keys plus a header and omit-default comment — one atomic whole-file write or nothing (I1-I5 invariants: no half-states, never overwrite, parse-tolerance asymmetry, no engine vocabulary in questions, hardcode nothing derivable). Closes with a discovery-replay proof, a read-back of the written keys, and the echo line the operator will see on the next pipeline run.
+- **Config-load echo line** added to all three pipeline skills (`design-swarm`, `run-list`, `conductor`): each now states `loaded config from <path>` or `running on omit-defaults` as the first line of skill output, so which config resolved is visible without inspection.
+- `config/house-config.example.md`: new Quickstart no-clobber one-liners for macOS/Linux, WSL, and Windows PowerShell, plus AI-facing caveats (confirm actual host OS before picking a block; never overwrite an existing config; keys and defaults come only from the table, never invented).
+- `README.md`: Setup section slimmed, pointing installs at the example file's own Quickstart procedure (and the new `spire-pipeline:setup` skill) instead of restating the fill procedure inline.
+- Design provenance: design-swarm + run-list + conductor pipeline run, 2026-08-06.
+
 ## 0.4.2 (2026-08-06)
 
 - **Gate-brief guard.** New PreToolUse hook (`hooks/gate_brief_guard.py`) matched on `AskUserQuestion`: during an active design-swarm run it denies a gate ask unless a fresh `gate-*-brief.md` (≥ 400 B, < 5 min old) exists in the run folder. Turns the 0.4.0 No Naked Gate rule from prose into a hard stop, after prose-only enforcement skipped the brief on a live run 2026-08-06. No-op when no swarm is active; fail-open on any error, mirroring the path guard.
