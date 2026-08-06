@@ -45,7 +45,7 @@ plugin-src/
   references/lineage.md                 full engine-cut provenance + credits
   references/resume-walkdown.md         resume walkdown reconstruction ordering
   references/swarm-templates.md         design-swarm digest/schema templates
-  config/house-config.md                the swappable layer — HOUSE values (your copy — not shipped)
+  config/house-config.md                NOT a file here — your filled copy lives OUTSIDE the plugin (Setup step 2); this folder is wiped on update
   config/house-config.example.md        sanitized example for public use
 ```
 
@@ -57,9 +57,11 @@ v0.1's write boundaries, probe rules, and trust hierarchy were PROSE-ENFORCED on
 
 **Config resolution.** No templating engine: the conductor reads the config once at skill load and applies values as prose. **Config discovery search order (deterministic): (1) project root, (2) home directory; first found wins — project beats home.** A key with a documented "Omit →" default uses that default when the key is omitted. Only a key with NO documented default, or an unrecognized/malformed entry, is UNKNOWN = deny-by-default (park and ask).
 
-**Building the cuts.**
-- House cut: `skills/` + `shared/` + `config/house-config.md`.
-- Public cut: `skills/` + `shared/` + `config/house-config.example.md` (renamed to `house-config.md` by the adopter). `config/house-config.md` is the ONLY file excluded from public distribution.
+**Building the cuts.** Both cuts are the SAME shipped engine (`skills/` + `shared/` + the example config); they differ only in which filled `house-config.md` resolves at load time from OUTSIDE the plugin folder:
+- House cut: the house's own `house-config.md`, kept at the house's config location outside the repo (a project root or home dir).
+- Public cut: an adopter's copy of `config/house-config.example.md`, renamed to `house-config.md` and kept outside the plugin folder.
+
+A real, filled `house-config.md` is never committed to the repo or shipped in the plugin — `config/` ships the example only (and a repo `.gitignore` guards `plugins/*/config/house-config.md` against an accidental commit).
 
 **Sanitization invariant.** Engine files (`skills/`, `shared/`) and the example config carry no installation paths, no host-specific tool names, no internal project/ledger names, no personal names. Public lineage credits (Ari Evergreen Build, MIT) are kept — they are provenance, not residue. The context-pack contract carries its validation record inline — including the honest history of the first gate it failed.
 

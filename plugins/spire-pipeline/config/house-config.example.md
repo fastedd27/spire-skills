@@ -19,6 +19,18 @@ omitted from your config. Only a key with NO documented default, or an
 unrecognized/malformed entry, is treated like an UNKNOWN row: deny-by-default
 (park and ask), never guessed.
 
+## Quickstart — the keys most installs actually set
+
+You can run with NO config file at all: every key falls back to its "Omit →" default (scratch-dir staging, serial in-session dispatch, all canonical writes park, follow-ups numbered inside the run-list). It degrades to a safe solo mode.
+
+To get a useful setup without reading the whole table, copy this file to `house-config.md` OUTSIDE the plugin folder (project root or home) and set just these three:
+
+- `cfg:staging.durable_root` — where run-lists, specs, and keeper artifacts land and survive the session (e.g. `~/projects/<project>/`). Without it they go to `./pipeline-runs/`.
+- `cfg:dispatch.mechanism` — point this at your subagent/Task tooling so the conductor can fan work out; omit for serial in-session (slower, same guarantees).
+- `cfg:hooks.hash` — on Windows set `certutil -hashfile <path> SHA256`; on macOS/Linux/WSL the `sha256sum` default is fine.
+
+Everything else below is safe to leave at its documented default until you have a reason to set it. The full table follows.
+
 ## Config metadata
 
 | key | what it is | example value |
@@ -57,7 +69,7 @@ unrecognized/malformed entry, is treated like an UNKNOWN row: deny-by-default
 | `cfg:hooks.wrap_sweep` | A script/check that verifies every keeper artifact sits at a durable path at wrap time. Omit → do the sweep manually. | `./scripts/wrap_sweep.py` (your own script if you have one — NOT shipped with this plugin) |
 | `cfg:hooks.id_mint` | A script/process that reserves work-item ids so sessions never hand-mint colliding ids. Omit → park id minting to the operator. | `./scripts/mint_id.py` (your own script if you have one — NOT shipped with this plugin) |
 | `cfg:hooks.notify` | Your existing operator-notification mechanism (push, chat webhook, email). The engine never invents a new one. Omit → none; parks surface in the return board only. | "the team's existing on-call/chat webhook" |
-| `cfg:hooks.hash` | An existing host tool for computing the decide-once brief's SHA-256. Omit → `sha256sum`. | `sha256sum <path>` (any equivalent SHA-256 tool; `certutil -hashfile <path> SHA256` on Windows) |
+| `cfg:hooks.hash` | An existing host tool for computing the decide-once brief's SHA-256. Omit → `sha256sum` (present on macOS/Linux/WSL). **Windows note:** `sha256sum` is NOT on a stock Windows box, so the omit-default will fail there — set this key to `certutil -hashfile <path> SHA256`. | `sha256sum <path>` (any equivalent SHA-256 tool; `certutil -hashfile <path> SHA256` on Windows) |
 
 ## Governance (rule names + surfaces)
 

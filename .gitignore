@@ -1,0 +1,4 @@
+# Never commit a filled house config — it carries installation-private values.
+# The real config always lives OUTSIDE the plugin folder; this guards against an
+# adopter dropping a copy into config/ by mistake.
+plugins/*/config/house-config.md

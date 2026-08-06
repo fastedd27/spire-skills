@@ -2,6 +2,13 @@
 
 Release history for the plugin. Deeper engine detail (rule-level provenance, fold history) lives in each skill's own version log inside its `SKILL.md`.
 
+## 0.4.1 (2026-08-05)
+
+- Onboarding / docs pass. The filled `house-config.md` now has ONE documented home: OUTSIDE the plugin folder (project root or home). Removed the misleading README file-tree entry and rewrote "Building the cuts" — both cuts share the shipped engine and differ only in which external config resolves at load; a filled config is never committed or shipped.
+- Added a repo `.gitignore` for `plugins/*/config/house-config.md` so an adopter can't accidentally commit installation-private values.
+- `house-config.example.md`: new "Quickstart" block naming the three keys most installs actually set (`staging.durable_root`, `dispatch.mechanism`, `hooks.hash`), plus an explicit note that a zero-config install runs on safe defaults.
+- Fixed the `cfg:hooks.hash` omit-default note: `sha256sum` isn't on a stock Windows box, so Windows installs should set `certutil -hashfile <path> SHA256`.
+
 ## 0.4.0 (2026-08-05)
 
 - **No Naked Gate — the gate brief.** New canonical rule in `shared/pipeline-conventions.md`: every operator-facing gate must render enough readable context IN THE LIVE CONVERSATION (chat or code-window turn, mobile included) for the operator to answer without guessing — decision, each option by what it is + its tradeoff (never a bare codename), recommendation + why, reversibility. Closes the maiden-run failure where gates surfaced bare option labels and forced a blind accept of the recommendation.
