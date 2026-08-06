@@ -2,6 +2,13 @@
 
 Release history for the plugin. Deeper engine detail (rule-level provenance, fold history) lives in each skill's own version log inside its `SKILL.md`.
 
+## 0.4.2 (2026-08-06)
+
+- **Gate-brief guard.** New PreToolUse hook (`hooks/gate_brief_guard.py`) matched on `AskUserQuestion`: during an active design-swarm run it denies a gate ask unless a fresh `gate-*-brief.md` (≥ 400 B, < 5 min old) exists in the run folder. Turns the 0.4.0 No Naked Gate rule from prose into a hard stop, after prose-only enforcement skipped the brief on a live run 2026-08-06. No-op when no swarm is active; fail-open on any error, mirroring the path guard.
+- `design-swarm`: S0 writes the `.swarm-active.json` marker; Gate A/B write `gate-A-brief.md` / `gate-B-brief.md` before the ask; HALT deletes the marker. New non-negotiable #9.
+- `shared/pipeline-conventions.md`: No Naked Gate gains a mechanical-backstop paragraph.
+- design-swarm version tag → `v2026-08-06.1`.
+
 ## 0.4.1 (2026-08-05)
 
 - Onboarding / docs pass. The filled `house-config.md` now has ONE documented home: OUTSIDE the plugin folder (project root or home). Removed the misleading README file-tree entry and rewrote "Building the cuts" — both cuts share the shipped engine and differ only in which external config resolves at load; a filled config is never committed or shipped.

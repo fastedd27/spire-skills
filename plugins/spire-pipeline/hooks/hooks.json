@@ -9,6 +9,15 @@
             "command": "if python3 -c \"\" >/dev/null 2>&1; then python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/path_guard.py\"; elif python -c \"\" >/dev/null 2>&1; then python \"${CLAUDE_PLUGIN_ROOT}/hooks/path_guard.py\"; elif py -3 -c \"\" >/dev/null 2>&1; then py -3 \"${CLAUDE_PLUGIN_ROOT}/hooks/path_guard.py\"; else echo \"path-guard: no working Python found (python3/python/py) - guard INACTIVE, prose write rules apply\" >&2; exit 0; fi"
           }
         ]
+      },
+      {
+        "matcher": "AskUserQuestion",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if python3 -c \"\" >/dev/null 2>&1; then python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/gate_brief_guard.py\"; elif python -c \"\" >/dev/null 2>&1; then python \"${CLAUDE_PLUGIN_ROOT}/hooks/gate_brief_guard.py\"; elif py -3 -c \"\" >/dev/null 2>&1; then py -3 \"${CLAUDE_PLUGIN_ROOT}/hooks/gate_brief_guard.py\"; else echo \"gate-brief-guard: no working Python found - guard INACTIVE, prose gate rules apply\" >&2; exit 0; fi"
+          }
+        ]
       }
     ]
   }

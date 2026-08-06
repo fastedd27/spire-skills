@@ -1,6 +1,6 @@
 {
   "name": "spire-pipeline",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Three-skill build pipeline (design-swarm to run-list to conductor): a divergence-first design pass, a durable multi-session run-list planner, and a tiered execution engine that verifies every tick with a mechanical probe before it lands. Public cut of a house engine, config-swappable via config/house-config.example.md.",
   "keywords": [
     "spire",

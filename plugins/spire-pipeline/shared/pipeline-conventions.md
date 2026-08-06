@@ -38,6 +38,8 @@ Every operator-facing gate — any point where the run stops for a human to choo
 
 **Cowork polish (optional, never load-bearing).** Where the ask surface supports per-option previews or descriptions (e.g. Cowork's question widget), carry the per-option "what it is + tradeoff" there too. This ENRICHES the widget; it does not replace the in-conversation brief, which must stand alone so the gate reads identically in a plain code-window prompt.
 
+**Mechanical backstop (design-swarm).** `hooks/gate_brief_guard.py` denies an `AskUserQuestion` during an active swarm run unless a fresh `gate-*-brief.md` (≥ 400 B, < 5 min old) exists in the run folder. The prose rule above remains the spec; the hook is defense-in-depth on the one surface (`AskUserQuestion`) where the maiden-run and 2026-08-06 failures occurred. Same no-op-when-idle and fail-open posture as the path guard. Armed by the S0 marker `${CLAUDE_PROJECT_DIR}/.swarm-active.json`, disarmed at HALT.
+
 Carried by all three pipeline skills at their gates: design-swarm Gate A and Gate B; the conductor's decide-once brief surfacing and any `operator-decision` return-board card; the run-list return board. Amend HERE, never as a local fork in a skill.
 
 ## Park-reason vocabulary
