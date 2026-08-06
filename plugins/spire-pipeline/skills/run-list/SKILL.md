@@ -156,7 +156,7 @@ stage's own contract, not something to import into a spec-intake pass here.
 
 First: load your filled config (house-config.md — kept OUTSIDE the plugin
 directory, discovered per the README search order); missing file = every key
-at its omit-default.
+at its omit-default. State which config resolved as the first line of skill output: `loaded config from <path>`, or `running on omit-defaults` when no file was found.
 
 Copy the template (`assets/template.md`, beside this file) and fill it in,
 in this order. Constraints first (they bound everything), then structure, then

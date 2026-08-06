@@ -40,7 +40,7 @@ The operator must be able to tell WORKING from STALLED at a glance, without inte
 
 ### S0 — Frame (conductor, inline; the only inline stage)
 
-- First: load your filled config (house-config.md — kept OUTSIDE the plugin directory, discovered per the README search order); missing file = every key at its omit-default.
+- First: load your filled config (house-config.md — kept OUTSIDE the plugin directory, discovered per the README search order); missing file = every key at its omit-default. State which config resolved as the first line of skill output: `loaded config from <path>`, or `running on omit-defaults` when no file was found.
 - State the goal in one sentence and the **hard locks** (constraints that survive no matter what: budget, hardware boundary, frozen contracts, deadlines).
 - Bound the context: name the 3–7 sources that matter; do not load more.
 - **Comparison Discipline pre-check:** before designing anything new, sweep for an existing surface that already does this (hidden-upgrade check). If the sweep finds a wash, say so and stop — the swarm is not a ritual.

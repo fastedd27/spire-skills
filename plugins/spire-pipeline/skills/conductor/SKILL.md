@@ -17,7 +17,7 @@ description: "(v2026-08-05.1) Execute a run-list document — pipeline stage 3 o
 
 Ratified design of record: whatever `cfg:refs.executor_spec` names (default: none — this skill text is the spec). Where a spec of record exists, this skill implements it; on any conflict, the spec wins and the skill owes a version bump.
 
-First: load your filled config (house-config.md — kept OUTSIDE the plugin directory, discovered per the README search order); missing file = every key at its omit-default.
+First: load your filled config (house-config.md — kept OUTSIDE the plugin directory, discovered per the README search order); missing file = every key at its omit-default. State which config resolved as the first line of skill output: `loaded config from <path>`, or `running on omit-defaults` when no file was found.
 
 ## Non-negotiables (read before running)
 
