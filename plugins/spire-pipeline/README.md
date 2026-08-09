@@ -2,7 +2,7 @@
 
 **Design it, plan it, build it — with receipts.** Three skills that take a project from vague idea to executed, verified plan across as many Claude sessions as it takes, without losing the plot between them — plus an optional `setup` helper that configures the whole thing in two questions.
 
-Part of the spire-skills collection from The Wizard's Spire (https://thewizardsspire.com).
+Part of the spire-skills collection from The Spire Library (https://thespirelibrary.com).
 
 ## What this does, in plain English
 

@@ -2,6 +2,10 @@
 
 Release history for the plugin. Deeper engine detail (rule-level provenance, fold history) lives in each skill's own version log inside its `SKILL.md`.
 
+## 0.5.2 (2026-08-09)
+
+- **Branding** — public copy re-pointed from The Wizard's Spire to **The Spire Library** (https://thespirelibrary.com): repo + plugin README attribution lines, `plugin.json` author/homepage, `marketplace.json` owner. The old domain keeps resolving as an alias; no engine text touched.
+
 ## 0.5.1 (2026-08-09)
 
 Docs-only release — no engine text changed.

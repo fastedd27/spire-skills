@@ -1,6 +1,6 @@
 # spire-skills
 
-Skills and plugins from **The Wizard's Spire** — working agent-orchestration machinery, cut from a live operator system and published with the house residue swapped out for a config layer you fill in yourself.
+Skills and plugins from **The Spire Library** (https://thespirelibrary.com) — working agent-orchestration machinery, cut from a live operator system and published with the house residue swapped out for a config layer you fill in yourself.
 
 ## Install
 
