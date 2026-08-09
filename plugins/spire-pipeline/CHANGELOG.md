@@ -2,6 +2,15 @@
 
 Release history for the plugin. Deeper engine detail (rule-level provenance, fold history) lives in each skill's own version log inside its `SKILL.md`.
 
+## 0.5.1 (2026-08-09)
+
+Docs-only release — no engine text changed.
+
+- Repo `README.md`: new **First run** section for brand-new users (zero-config truth up front; the two paths to a filled config — `spire-pipeline:setup` or the example's Quickstart by hand); plugin table entry brought current (four skills, v0.5.1).
+- Plugin `README.md`: intro and plain-English skill list now include `setup`; file tree gains `skills/setup/SKILL.md` and `hooks/gate_brief_guard.py` entries; Setup step 3 names the `setup` invocation and its `check my config` diff mode; Versioning note refreshed; Lineage list gains the setup engine (dogfooded through the pipeline's own three stages, 2026-08-06).
+- `hooks/README-hooks.md`: documents the gate-brief guard (0.4.2) alongside the path guard — arming marker, freshness rule, fail-open posture.
+- Manifest descriptions (`plugin.json`, `marketplace.json`): mention the setup helper.
+
 ## 0.5.0 (2026-08-06)
 
 - **New `spire-pipeline:setup` skill** — an opt-in, explicitly-invoked onboarding helper for the config layer. Replays the README's discovery order; a found config enters read-only diff mode (shadowing check, missing-key report against documented omit-defaults, Quickstart coverage) and writes nothing. No config found runs evidence-first detection (host OS with the bridge/cloud caution, hash tool, dispatch tooling), asks two outcome-phrased questions (durable location; project-vs-machine config placement), then writes a minimal config containing only the example's Quickstart-chosen keys plus a header and omit-default comment — one atomic whole-file write or nothing (I1-I5 invariants: no half-states, never overwrite, parse-tolerance asymmetry, no engine vocabulary in questions, hardcode nothing derivable). Closes with a discovery-replay proof, a read-back of the written keys, and the echo line the operator will see on the next pipeline run.

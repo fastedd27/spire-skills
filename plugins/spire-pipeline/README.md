@@ -1,6 +1,6 @@
 # spire-pipeline
 
-**Design it, plan it, build it — with receipts.** Three skills that take a project from vague idea to executed, verified plan across as many Claude sessions as it takes, without losing the plot between them.
+**Design it, plan it, build it — with receipts.** Three skills that take a project from vague idea to executed, verified plan across as many Claude sessions as it takes, without losing the plot between them — plus an optional `setup` helper that configures the whole thing in two questions.
 
 Part of the spire-skills collection from The Wizard's Spire (https://thewizardsspire.com).
 
@@ -9,6 +9,7 @@ Part of the spire-skills collection from The Wizard's Spire (https://thewizardss
 - **`design-swarm`** — give it a hard problem and instead of one answer, it generates several competing approaches, each deliberately biased a different way, then attacks them all and hands you the survivors to choose from. Ends with a written design you signed off on. Never builds anything.
 - **`run-list`** — turns that design into one planning document: the build broken into ordered work sessions, what depends on what, a ready-to-paste prompt for each, and live status per step. The document *is* the project state — any future session reads it cold and knows exactly where things stand.
 - **`conductor`** — executes the plan like a foreman who never touches the tools: collects every decision you'd need to make up front in one sitting (then runs for hours without pinging you), farms each step out to worker agents, and refuses to mark anything done unless a mechanical check proves it happened. A worker saying "finished!" counts for nothing; a file existing with the right contents counts. Anything only you can do lands on a plain-English "here's what I need from you" board instead of the run stalling or the AI guessing.
+- **`setup`** (optional) — first-run onboarding: detects what it can about your machine, asks two plain questions, and writes a minimal config. Already configured? It gives you a read-only report of your config against the current key table instead ("check my config"). It never overwrites anything, and you never need it — the pipeline runs fine with no config at all.
 
 Works on anything with 3+ steps — code, documents, content, systems. All state lives in the documents themselves, so a closed laptop resumes exactly where it left off.
 
@@ -24,13 +25,16 @@ The conductor emits a `<run-list-basename>.report.json` file sibling to the run-
 2. Copy `config/house-config.example.md` to a `house-config.md` kept **OUTSIDE the plugin directory** — your project root or home directory — because the plugin folder is replaced on update and anything stored inside it is lost. For the fill procedure — which keys to set first, the no-clobber copy commands, what's safe to leave at default — follow the example file's own **Quickstart** section rather than filling the whole table by hand. **Config discovery search order (deterministic): (1) project root, (2) home directory; first found wins — project beats home.** The skills load the filled config from wherever that search finds it (each skill's bootstrap line loads it per this README search order); a missing file = every key at its omit-default. Only a key with NO documented default, or an unrecognized/malformed entry, is UNKNOWN = park-and-ask.
 
    Would rather not fill it by hand at all? `spire-pipeline:setup` is an opt-in convenience skill: it detects what it can, asks only what it can't, writes a minimal config, and never overwrites an existing one — or just follow the Quickstart; both end in the same file.
-3. Invoke any stage by name: `design-swarm`, `run-list`, or `conductor` — or by the namespaced form (`spire-pipeline:design-swarm`, `spire-pipeline:run-list`, `spire-pipeline:conductor`).
+3. Invoke any stage by name: `design-swarm`, `run-list`, or `conductor` — or by the namespaced form (`spire-pipeline:design-swarm`, `spire-pipeline:run-list`, `spire-pipeline:conductor`). The onboarding helper is `setup` (`spire-pipeline:setup`) — explicit invocation only; `check my config` runs its read-only diff mode against an existing config.
 4. Mechanical enforcement (the hooks) requires a working Python — the hook tries `python3`, `python`, then the Windows `py` launcher (the Store's fake python3 stub is detected and skipped); without it the pipeline degrades to the v0.1 prose-only write boundaries — see `hooks/README-hooks.md`.
 
 ```
 plugin-src/
   hooks/hooks.json                      PreToolUse hook registration
   hooks/path_guard.py                   mechanical path-containment guard
+  hooks/gate_brief_guard.py             gate-brief guard — denies a design-swarm
+                                        gate ask without a fresh gate brief
+                                        (mechanical No Naked Gate backstop)
   hooks/README-hooks.md                 hook behavior + grants file schema
   scripts/probe_runner.py               typed probe runner (closed vocabulary)
   scripts/claim_lock.py                 atomic run-claim lockfile
@@ -38,6 +42,9 @@ plugin-src/
   skills/run-list/SKILL.md              engine (stage 2)
   skills/run-list/assets/template.md
   skills/conductor/SKILL.md             engine (stage 3)
+  skills/setup/SKILL.md                 first-run onboarding helper (optional,
+                                        explicit-invoke; diff mode on existing
+                                        configs — never overwrites)
   shared/pipeline-conventions.md        cross-skill conventions annex (extracted
                                         from the executor's D10; all three
                                         skills point here)
@@ -77,11 +84,12 @@ Each engine skill in this package carries its own **Lineage & credits** section 
 - `skills/design-swarm/SKILL.md` — brainstorming-swarm lineage + house version log pointer.
 - `skills/run-list/SKILL.md` — house version log pointer.
 - `skills/conductor/SKILL.md` — context-pack + tiering-rule credits + house version log pointer.
+- `skills/setup/SKILL.md` — first cut 2026-08-06 from the onboarding design spec (designed and built with this pipeline's own three stages, dogfooded end-to-end).
 
 Shared cross-skill vocabulary (touch-kinds, tier-role names, verdict grammar, status glyphs, provenance suffixes) is defined once in `shared/pipeline-conventions.md`, which all three skills point at rather than forking locally.
 
 **Instrumentation note.** The falsification-test and vitals lines inside the skills are the authors' own evaluation instrumentation — adopters can ignore them freely.
 
-**Versioning.** The plugin manifest (`.claude-plugin/plugin.json`) uses semver. The conductor's own version log (`skills/conductor/SKILL.md`, foot of file) now uses semver aligned with the plugin (v0.2.0, this fold); the design-swarm and run-list version logs still carry the legacy date-based scheme (`vYYYY-MM-DD.N`).
+**Versioning.** The plugin manifest (`.claude-plugin/plugin.json`) uses semver — see `CHANGELOG.md` for the release history. The conductor's own version log (`skills/conductor/SKILL.md`, foot of file) uses semver aligned with the plugin; the design-swarm, run-list, and setup version logs carry the date-based scheme (`vYYYY-MM-DD.N`).
 
 Formerly published internally as build-run-list / run-list-executor.

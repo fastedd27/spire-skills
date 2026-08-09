@@ -1,5 +1,7 @@
 # Pipeline hooks — mechanical enforcement layer
 
+Two PreToolUse hooks ship with the plugin: the **path guard** (`path_guard.py`, on `Write|Edit`) and the **gate-brief guard** (`gate_brief_guard.py`, on `AskUserQuestion`). Both share the same posture: no-op when no pipeline run is active, fail-open on their own errors, never block a normal session.
+
 ## What the path guard does
 
 `path_guard.py` is a PreToolUse hook on `Write|Edit`. When a pipeline run is
@@ -59,6 +61,14 @@ written by the conductor at intake:
 - `fixtures`: operator-ratified named test commands — argv arrays, never
   shell strings. Consumed by `scripts/probe_runner.py fixture <name>`.
 - `mode`: `"block"` (default) or `"warn"`.
+
+## What the gate-brief guard does (v0.4.2)
+
+`gate_brief_guard.py` is a PreToolUse hook on `AskUserQuestion`. It is the mechanical backstop for the **No Naked Gate** rule (`shared/pipeline-conventions.md`): an operator-facing gate must be preceded by a readable gate brief in the conversation, never a bare "pick A/B/C".
+
+- **Armed** only while a design-swarm run is active — S0 writes the marker `${CLAUDE_PROJECT_DIR}/.swarm-active.json`; HALT deletes it. No marker → total no-op, same as the path guard's no-op invariant.
+- **While armed:** an `AskUserQuestion` call is denied unless a fresh `gate-*-brief.md` (≥ 400 bytes, written < 5 minutes ago) exists in the run folder — i.e., the gate brief must actually have been written before the ask fires. Gate A/B write `gate-A-brief.md` / `gate-B-brief.md` per the design-swarm skill.
+- **Fail-open:** any internal error allows the ask with a visible warning — the guard never strands a run on its own bugs. The prose No Naked Gate rule remains the spec; this hook only enforces the one surface where the 2026-08-06 live-run lapse occurred.
 
 ## Requirements
 
