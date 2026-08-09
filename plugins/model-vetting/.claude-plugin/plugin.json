@@ -1,0 +1,21 @@
+{
+  "name": "model-vetting",
+  "version": "0.1.0",
+  "description": "Two paired skills for vetting an AI model artifact before you adopt it: model-scorecard (zero-friction triage over the public HuggingFace API \u2014 no token, no download \u2014 returning a coarse (format, loader) risk tier and a plain-language card) and model-eval (the deep static read for models that ship custom code \u2014 deterministic collector, a behavioral claim written twice and checked against the code's actual call graph, generation-to-sink traces, plain-English report). Executes nothing from the artifact and never issues a clearance.",
+  "keywords": [
+    "spire",
+    "model-vetting",
+    "model-scorecard",
+    "model-eval",
+    "huggingface",
+    "trust-remote-code",
+    "static-analysis"
+  ],
+  "author": {
+    "name": "Charles Weeks \u2014 The Spire Library",
+    "url": "https://thespirelibrary.com"
+  },
+  "homepage": "https://thespirelibrary.com",
+  "license": "MIT",
+  "repository": "https://github.com/fastedd27/spire-skills"
+}

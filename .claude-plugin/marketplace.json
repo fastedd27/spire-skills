@@ -9,6 +9,11 @@
       "name": "spire-pipeline",
       "source": "./plugins/spire-pipeline",
       "description": "Three-stage build pipeline plus a first-run setup helper: design-swarm (divergence-first design), run-list (durable multi-session build planning), conductor (tiered execution with probe-verified ticks), setup (two-question onboarding to a working config). One engine, config-swappable."
+    },
+    {
+      "name": "model-vetting",
+      "source": "./plugins/model-vetting",
+      "description": "A paired model-vetting set for AI model artifacts: model-scorecard (zero-friction triage over the public HuggingFace API \u2014 weight format, custom code, a coarse (format, loader) risk tier, no token and no download) and model-eval (the deep static read for custom-code models \u2014 deterministic collector, dual-pass behavioral claim checked against the actual call graph, generation-to-sink traces, plain-English report). Executes nothing from the artifact; never issues a clearance."
     }
   ]
 }
