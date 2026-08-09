@@ -5,7 +5,18 @@ Charles Weeks's work on AI memory systems, retrieval, and local-first infrastruc
 
 # spire-skills
 
-Skills and plugins from **The Spire Library** (https://thespirelibrary.com) — working agent-orchestration machinery, cut from a live operator system and published with the house residue swapped out for a config layer you fill in yourself.
+A **plugin marketplace** for Claude Code and Claude desktop (Cowork), published by [The Spire Library](https://thespirelibrary.com). Each plugin is a piece of working agent-orchestration machinery — cut from a live operator system, with the house-specific residue swapped out for a config layer you fill in yourself (or safe defaults you never have to touch).
+
+This repo is the **directory**. It tells you what's here and how to install it. Each plugin then has its own README that tells you what it does and how to use it — start there once you've picked one.
+
+## What's here
+
+| Plugin | Version | What it is | Config? |
+|--------|:---:|------------|:---:|
+| **[spire-pipeline](plugins/spire-pipeline/)** | 0.5.2 | A three-stage build pipeline that takes a project from vague idea to executed, verified plan across as many Claude sessions as it takes: **design-swarm** (competing designs, critique gate) → **run-list** (one durable doc that plans and tracks the build) → **conductor** (tiered execution where every step is verified by a mechanical probe before it counts). Plus **setup**, a two-question onboarding helper. | Optional |
+| **[model-vetting](plugins/model-vetting/)** | 0.1.0 | Two paired skills for looking at an AI model *before* you adopt it: **model-scorecard** (fast triage over the public HuggingFace API — no token, no download) and **model-eval** (a deep static read of models that ship custom code). Static only — never runs the artifact, never issues a clearance. | None |
+
+*More on the way. Each new plugin lands as its own row here and its own folder under `plugins/`.*
 
 ## Install
 
@@ -17,37 +28,25 @@ Skills and plugins from **The Spire Library** (https://thespirelibrary.com) — 
 /plugin install model-vetting@spire-skills
 ```
 
-**Claude desktop / Cowork (GUI):** Settings → Plugins → add the marketplace `fastedd27/spire-skills`, then install **spire-pipeline** and/or **model-vetting**. Enable marketplace auto-sync to pick up new versions.
+Install only the plugins you want — they're independent.
 
-**Updating (desktop):** auto-sync pulls new commits from the marketplace on its own, but the installed plugin only moves forward when you click **Update** on its plugin page (Settings → Plugins → Spire pipeline — an "Update available" badge appears when the synced marketplace is ahead).
+**Claude desktop / Cowork (GUI):** Settings → Plugins → add the marketplace `fastedd27/spire-skills`, then install the plugins you want. Enable marketplace auto-sync to pick up new versions.
 
-Installs are per-surface — if you work in both, install in both. Skills and hooks load at session start, so open a fresh session after installing or updating; running sessions keep the old version.
+Once a plugin is installed, open its README (linked in the table above) to get started — that's where each plugin's own setup and usage lives.
 
-## First run (new here? start with this)
+### Updating
 
-You can use the pipeline immediately with **zero configuration** — every config key has a documented safe default, and the skills say `running on omit-defaults` so you know that's what's happening. When you want your outputs landing somewhere durable of your choosing, either:
+Auto-sync pulls new commits from the marketplace on its own, but an installed plugin only moves forward when you click **Update** on its plugin page (Settings → Plugins → *plugin name* — an "Update available" badge appears when the synced marketplace is ahead).
 
-- **say `setup`** (the `spire-pipeline:setup` skill) — it detects what it can about your machine (OS, hash tool, whether the session can fan work out), asks just two plain questions (where should finished work live; config per-project or machine-wide), and writes a minimal `house-config.md` for you. It never overwrites an existing config — re-running it on a configured machine gives you a read-only report instead (`check my config`); **or**
-- **do it by hand** — open the plugin's [`config/house-config.example.md`](plugins/spire-pipeline/config/house-config.example.md) and follow its Quickstart section (three keys, copy-paste commands per OS).
-
-Either way the file lives **outside the plugin folder** (project root or home — the plugin folder is wiped on every update). Then just talk to it: "design swarm this…", "map out the sessions", "execute the run-list".
-
-## Plugins
-
-| Plugin | What it is |
-|--------|------------|
-| [spire-pipeline](plugins/spire-pipeline/) — v0.5.2 ([changelog](plugins/spire-pipeline/CHANGELOG.md)) | Three-stage build pipeline: **design-swarm** (divergence-first design pass — competing approaches, critique gate), **run-list** (one durable document that plans and tracks a multi-session build), **conductor** (tiered execution engine — every completed step verified by a mechanical probe before it counts; no self-certified done). Plus **setup**, an optional first-run helper that gets you from installed to configured in two questions. Every run emits a machine-readable, version-stamped report (`<run-list-basename>.report.json`) at each run summary — schema in [run-report-schema.md](plugins/spire-pipeline/shared/run-report-schema.md). |
-| [model-vetting](plugins/model-vetting/) — v0.1.0 ([changelog](plugins/model-vetting/CHANGELOG.md)) | Two paired skills for looking at an AI model before you adopt it: **model-scorecard** (fast triage over the public HuggingFace API — no token, no download — returning a coarse `(format, loader)` risk tier and a plain-language card) and **model-eval** (the deep static read for models that ship custom code — deterministic collector, a behavioral claim written twice and checked against the code's actual call graph, generation-to-sink traces, and a report a non-developer can act on). Neither executes anything from the artifact and neither issues a clearance; a code-execution artifact seen static-only gets a **disclaimer of opinion**, not a rating. No config layer. |
-
-More on the way.
+Installs are **per-surface** — if you work in both CLI and desktop, install in both. Skills and hooks load at session start, so **open a fresh session after installing or updating**; running sessions keep the old version.
 
 ## Design stance
 
-These aren't prompt packs. Each skill encodes an operating discipline: deny-by-default write safety, one-writer state, verification receipts, and honest failure surfaces (parked work is spelled out in plain English, not buried). The engines never hardcode an environment — a swappable config layer (`config/house-config.example.md` in spire-pipeline) binds them to yours, and every key documents what happens if you omit it.
+These aren't prompt packs. Each plugin encodes an operating discipline — deny-by-default write safety, one-writer state, verification receipts, and honest failure surfaces (parked or unresolved work is spelled out in plain English, never buried). Where a plugin needs to know about your machine, it never hardcodes it: a swappable config layer binds the engine to your environment, and every config key documents what happens if you omit it, so a first run with zero configuration is always safe.
 
 ## Credits
 
-Built on Claude (Anthropic) tooling. The pipeline borrows two credited mechanisms from Ari Evergreen's Build (MIT): the context-pack contract (stage 3) and the brainstorming-swarm adaptation (stage 1): https://www.skool.com/cliefnotes. Full lineage in each plugin's README.
+Built on Claude (Anthropic) tooling. Where a plugin borrows external mechanism, it credits it in its own README and lineage files — e.g. spire-pipeline credits two mechanisms from [Ari Evergreen's Build (MIT)](https://www.skool.com/cliefnotes).
 
 ## License
 

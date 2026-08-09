@@ -4,6 +4,8 @@ Two paired skills for looking at an AI model **before** you adopt it: a fast tri
 pass and a deep static read. Both are static — neither one ever runs code that came
 out of the artifact, and neither one clears it.
 
+Part of the [spire-skills](../../README.md) collection from [The Spire Library](https://thespirelibrary.com).
+
 The honest framing up front: this is a negligence detector. It reliably catches
 sloppy and careless code and raises the cost of an attack. It is not a security audit,
 it does not prove an artifact is clean, and no output it produces is a clearance.
@@ -58,6 +60,21 @@ is the pass you spend real time on, and its output always ends in a residue list
 the specific contradictions, opaque call targets, and unverified claims a human still
 has to look at.
 
+## Quick usage
+
+Both skills trigger from plain requests — no slash command needed.
+
+- **Scorecard:** "is this model safe to pull?", "quick check on `owner/repo` before I
+  use it", "scorecard this HuggingFace model". Takes an `owner/repo` or a HuggingFace
+  URL.
+- **Deep pass:** "evaluate / vet / audit this model", "should we adopt `owner/repo`?",
+  or automatically as the follow-up when the scorecard returns tier C or D. Takes an
+  `owner/repo`, a URL, or **a local model folder path**, plus an optional risk tier
+  (1 casual · 2 internal tooling · 3 production; default 2).
+
+`skills/model-eval/EXAMPLE-baidu-Unlimited-OCR.md` is a worked report in the required
+shape — read it if you want to know what you get back before you run anything.
+
 ## What these deliberately don't do
 
 - **They never execute anything from the artifact.** The collector and the
@@ -80,20 +97,14 @@ has to look at.
   pickle-family format is *present*; the real opcode-level check belongs to
   `modelscan` / `picklescan`. Same for provenance attestation (SLSA-style tooling).
 
-## Quick usage
+## Install
 
-Both skills trigger from plain requests — no slash command needed.
+```
+/plugin marketplace add fastedd27/spire-skills
+/plugin install model-vetting@spire-skills
+```
 
-- **Scorecard:** "is this model safe to pull?", "quick check on `owner/repo` before I
-  use it", "scorecard this HuggingFace model". Takes an `owner/repo` or a HuggingFace
-  URL.
-- **Deep pass:** "evaluate / vet / audit this model", "should we adopt `owner/repo`?",
-  or automatically as the follow-up when the scorecard returns tier C or D. Takes an
-  `owner/repo`, a URL, or **a local model folder path**, plus an optional risk tier
-  (1 casual · 2 internal tooling · 3 production; default 2).
-
-`skills/model-eval/EXAMPLE-baidu-Unlimited-OCR.md` is a worked report in the required
-shape — read it if you want to know what you get back before you run anything.
+Then **open a fresh session** so the skills register. See the [collection README](../../README.md#install) for desktop/GUI install and update mechanics. There is no config layer in this plugin — install it and use it.
 
 ## Requirements
 
@@ -108,9 +119,7 @@ No tokens or accounts are required anywhere. Both scripts will use `HF_TOKEN` fo
 higher rate limits if it happens to be set in the environment, and work fine
 anonymously if it isn't. `python3` is stdlib-only — no pip installs, no virtualenv.
 
-There is no config layer in this plugin. Install it and use it.
-
-## Verifying the analyzer still fires
+### Verifying the analyzer still fires
 
 `bash skills/model-eval/fixtures/run_fixtures.sh` generates a small corpus with known
 properties (a benign custom-code model, a module whose docstring contradicts its
@@ -118,17 +127,6 @@ imports, an obfuscated `getattr`, a `torch.load`, a sink in a non-load-path scri
 pickle weights), runs the collector against each offline, and asserts the analyzer
 catches what it's supposed to catch. No network. Run it after any change to the
 collector.
-
-## Install
-
-```
-/plugin marketplace add fastedd27/spire-skills
-/plugin install model-vetting@spire-skills
-```
-
-Desktop / Cowork: Settings → Plugins → add the marketplace `fastedd27/spire-skills`,
-then install **model-vetting**. Skills load at session start, so open a fresh session
-after installing or updating.
 
 ## Versioning
 
