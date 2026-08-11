@@ -70,7 +70,7 @@ The prose rules remain in force as the model-side layer underneath both — and 
 
 ### One engine, two cuts
 
-Each skill's text never hardcodes an environment. A swappable config layer binds it to yours (the annex pattern — same shape as Ari Evergreen Build's swappable domain layer). The house cut and the public cut build from the **same engine text**; they differ only in which filled `house-config.md` resolves at load time from outside the plugin folder:
+Each skill's text never hardcodes an environment. A swappable config layer binds it to yours (the annex pattern — same shape as Ari Leavesley's swappable domain-layer pattern). The house cut and the public cut build from the **same engine text**; they differ only in which filled `house-config.md` resolves at load time from outside the plugin folder:
 
 - **House cut** — the house's own `house-config.md`, kept at its config location outside the repo.
 - **Public cut** — an adopter's copy of `config/house-config.example.md`, renamed to `house-config.md` and kept outside the plugin folder.
@@ -103,10 +103,10 @@ spire-pipeline/
 
 ### Credits & lineage
 
-This pipeline stands on two pieces of borrowed, credited mechanism, both from [Ari Evergreen's Build (MIT)](https://www.skool.com/cliefnotes):
+This pipeline stands on two pieces of borrowed, credited mechanism, both from [Ari Leavesley (MIT)](https://www.skool.com/cliefnotes):
 
 - **The context-pack contract** (stage 3 / conductor) — worker-brief composition: needle taxonomy, provenance suffixes, placement/budget, pointer-vs-gist split, decorrelated back-translation check. Its acceptance gate PASSED 2026-08-04 under two independent external model lineages (10/10 corruption types each, zero ID/value misses); the validation record, including the first gate it failed, is kept inline in the conductor's `SKILL.md`.
-- **The brainstorming-swarm adaptation** (stage 1 / design-swarm) — adapted from Ari Evergreen's `brainstorming-swarm` v1.0.0 (stage spine, lens set, gates) onto this pipeline's own machinery.
+- **The brainstorming-swarm adaptation** (stage 1 / design-swarm) — adapted from Ari Leavesley's `brainstorming-swarm` v1.0.0 (stage spine, lens set, gates) onto this pipeline's own machinery.
 
 Each engine skill carries its own **Lineage & credits** section at the foot of its `SKILL.md`. Shared cross-skill vocabulary (touch-kinds, tier-role names, verdict grammar, status glyphs, provenance suffixes) is defined once in `shared/pipeline-conventions.md`. The falsification-test and vitals lines inside the skills are the authors' own evaluation instrumentation — adopters can ignore them freely.
 

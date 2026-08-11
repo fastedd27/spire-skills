@@ -46,7 +46,7 @@ These aren't prompt packs. Each plugin encodes an operating discipline — deny-
 
 ## Credits
 
-Built on Claude (Anthropic) tooling. Where a plugin borrows external mechanism, it credits it in its own README and lineage files — e.g. spire-pipeline credits two mechanisms from [Ari Evergreen's Build (MIT)](https://www.skool.com/cliefnotes).
+Built on Claude (Anthropic) tooling. Where a plugin borrows external mechanism, it credits it in its own README and lineage files — e.g. spire-pipeline credits two mechanisms from [Ari Leavesley (MIT)](https://www.skool.com/cliefnotes).
 
 ## License
 

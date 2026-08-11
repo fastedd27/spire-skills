@@ -12,7 +12,7 @@ description: "(v2026-08-06.1) Run a design swarm: a divergence-first DESIGN pass
 
 # Design Swarm — divergence-first design pass (stops at written design)
 
-**What this is.** A staged design pass where the main chat stays orchestrator, never doer: independent agents work the problem through fixed lenses and competing axioms, return schema-capped digests only, and the operator holds the two gates. Terminal outcome is a written, defensible design spec landed at a durable host path. **This skill does not build.** Adapted from Ari Evergreen's `brainstorming-swarm` v1.0.0 (stage spine, lens set, gates) onto house machinery and house discipline — comparison record: `cfg:refs.swarm_comparison`.
+**What this is.** A staged design pass where the main chat stays orchestrator, never doer: independent agents work the problem through fixed lenses and competing axioms, return schema-capped digests only, and the operator holds the two gates. Terminal outcome is a written, defensible design spec landed at a durable host path. **This skill does not build.** Adapted from Ari Leavesley's `brainstorming-swarm` v1.0.0 (stage spine, lens set, gates) onto house machinery and house discipline — comparison record: `cfg:refs.swarm_comparison`.
 
 ## Non-negotiables (read before running)
 
@@ -107,4 +107,4 @@ Land it durable (the owning project's durable staging path per `cfg:staging.dura
 ## Lineage & credits
 
 - **Engine cut 2026-08-04**, derived one-to-one from the house skill v2026-08-04.3. One source, two cuts: house and public builds share this exact engine text and differ ONLY in the config layer. The full house version log (v2026-08-02.1 → v2026-08-04.3, with fold provenance) lives with the house-retained originals (`cfg:refs.version_logs`).
-- **Credits:** adapted from **Ari Evergreen's `brainstorming-swarm` v1.0.0** (stage spine S0–S5, five lenses, two gates, mode labels, stop-at-design) onto house machinery: schema-enforced digests, the precedent lens, No-Clean-Evaluator critique, the ratify-seam Gate B, the durable-landing rule, and the run-list handoff. Observable Dispatch (run folders, task-per-leg, heartbeats, the stall rule, "never go dark") folded v2026-08-02.2 after the first live run.
+- **Credits:** adapted from **Ari Leavesley's `brainstorming-swarm` v1.0.0** (stage spine S0–S5, five lenses, two gates, mode labels, stop-at-design) onto house machinery: schema-enforced digests, the precedent lens, No-Clean-Evaluator critique, the ratify-seam Gate B, the durable-landing rule, and the run-list handoff. Observable Dispatch (run folders, task-per-leg, heartbeats, the stall rule, "never go dark") folded v2026-08-02.2 after the first live run.

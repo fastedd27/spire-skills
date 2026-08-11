@@ -1,6 +1,6 @@
 # House Config — pipeline skills config layer (EXAMPLE / PUBLIC CUT)
 
-<!-- CONFIG LAYER — the swappable annex (same shape as Ari Evergreen Build's
+<!-- CONFIG LAYER — the swappable annex (same shape as Ari Leavesley's
      swappable domain layer). Copy this file to `house-config.md`, replace every
      example value with your own installation's value, and the three engine
      skills run against your environment unchanged. The engine files
